@@ -15,7 +15,7 @@ SCC <- readRDS("Source_Classification_Code.rds")
 # Filter from SCC only Motor vehicles. My criteria is Mobile and On-Road
 SCC2 <- SCC[grepl("Mobile - On-Road", SCC$EI.Sector) == TRUE, ]
 # Filter from NEI all observations in Baltimore City which have SCC in SCC2
-Z <- subset(NEI, fips=="24510" & SCC %in% SCC2$SCC, select= Emissions:year)
+Z <- subset(NEI, fips=="24510" & SCC %in% SCC2$SCC, select=c("Emissions","year"))
 # Aggregate Emissions by year
 Y <- aggregate(Z["Emissions"], by=c(Z["year"]), FUN=sum)
 
@@ -31,5 +31,6 @@ print(g +
       + geom_smooth(method="lm", colour="#54278F", linetype=3, size=2, se=FALSE, aes(group=1))
       + xlab("Year") + ylab("Total Emissions") + ggtitle("Baltimore - Motor Vehicles")
 )
+
 # Close file
 dev.off()
