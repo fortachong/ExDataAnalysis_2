@@ -11,7 +11,7 @@ NEI <- readRDS(unzip("data.zip", "summarySCC_PM25.rds"))
 SCC <- readRDS(unzip("data.zip", "Source_Classification_Code.rds"))
 
 # Filter Emissions from Baltimore City (fips=24510)
-Z <- NEI[X$fips=="24510", c("Emissions", "year")]
+Z <- NEI[NEI$fips=="24510", c("Emissions", "year")]
 # Aggregate Emissions by year
 Y <- aggregate(Z["Emissions"], by=Z["year"], FUN=sum)
 # Open png file
