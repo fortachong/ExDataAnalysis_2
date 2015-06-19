@@ -2,15 +2,12 @@
 library(ggplot2)
 # Download the file from the official URL
 # https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip
-# download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip", 
-#              method="auto", destfile = "data.zip")
-
+download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip", 
+              method="auto", destfile = "data.zip")
 
 # Read Files in R format
-#NEI <- readRDS(unzip("data.zip", "summarySCC_PM25.rds"))
-#SCC <- readRDS(unzip("data.zip", "Source_Classification_Code.rds"))
-NEI <- readRDS("summarySCC_PM25.rds")
-SCC <- readRDS("Source_Classification_Code.rds")
+NEI <- readRDS(unzip("data.zip", "summarySCC_PM25.rds"))
+SCC <- readRDS(unzip("data.zip", "Source_Classification_Code.rds"))
 
 # Aggregate data (sum of emissions) by year
 Y <- aggregate(NEI["Emissions"], by=NEI["year"], FUN=sum)
