@@ -13,7 +13,7 @@ SCC <- readRDS(unzip("data.zip", "Source_Classification_Code.rds"))
 # Filter data from Baltimore City (fips = 24510), select columns: Emissions, year, type
 Z <- NEI[NEI$fips=="24510", c("Emissions", "year", "type")]
 # Aggregate data by year and type (Sum of Emissions)
-Y <- aggregate(Z["Emissions"], data=Z, by=c(Z["year"],Z["type"]), FUN=sum)
+Y <- aggregate(Z["Emissions"], by=c(Z["year"],Z["type"]), FUN=sum)
 # Open file
 png(file="plot3.png", width=480, height=480)
 # plot using year in the x axis, Emissions in the y axis, group by type
